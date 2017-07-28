@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+通过git命令行生成私钥和公钥
+ssh-keygen -t rsa -C "825468477@qq.com" 
+ 
+添加本地关联私钥
+ 先执行
+$eval `ssh-agent` 或 $ ssh-agent bash
+再执行（qq_rsa是私钥的文件名称）
+$ssh-add qq_rsa
+ 
+关联GitHub
+再登录github 将公钥的内容添加上去。
+ 
+设置当前文件git用户
+$git config user.name "825468477@qq.com"
+ 
+第一次普通的push不能提交，用下面的方式。
+$ git push --set-upstream lmybatis master
+ 
+移除远程库的关联
+$ git remote rm origin   
+ 
+添加远程库的关联(同步远程库与本地库)
+$ git remote add lmybatis git@github.com:gzqescore/lmybatis.git
+ 
+git commit -m "提交信息"
+ 
+ 
+
+</body>
+</html>
