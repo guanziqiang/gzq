@@ -7,5 +7,22 @@
 <body>
 <h1>MongoDB</h1>
 
+<h1>MongoDB安装</h1>
+<pre>
+分为四个目录
+data存放数据
+log存放日志
+conf存放启动的配置文件
+bin存放二进制运行程序
+============
+conf/mongod.conf启动文件属性设置
+port=27017 服务器mongod监听的端口
+dbpath=data 数据库存放路径（相对路径和绝对路径都可以）
+logpath=log/mongod.log 日志，需要指定一个确定的文件
+fork=true 在Linux下指定为一个后台启动程序（windows无效）。
+bind_ip=0.0.0.0 指定哪些地址能够访问当前的mongodb服务器。
+</pre>
+
+
 </body>
 </html>
