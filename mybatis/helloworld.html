@@ -1,0 +1,37 @@
+
+			<pre>
+			一、记忆：
+1，导入mybatis的jar包和相应数据库驱动。
+2，创建实体类及对应的mapper文件、数据库表。
+3，配置mybatis全局配置文件。
+4，创建测试类
+获取mybatis全局配置文件。
+创建session工厂。
+创建session（事务默认开启，只需要事务提交的方式；hibernate需要手动开启事务）。
+CRUD操作。
+提交事务（自动或手动）。
+关闭session。
+ 
+//1，获取mybatis配置文件
+    /*
+        //使用类加载器获取mybatis的配置文件
+    InputStream inputStream = 
+       this.getClass().getClassLoader().getResourceAsStream("mybits.xml");
+    */
+    //使用mybatis提供的Resource获取配置文件
+    Reader reader = Resources.getResourceAsReader("mybits.xml");
+//2，创建session工厂
+    SqlSessionFactory sqlSessionFactory = 
+       new SqlSessionFactoryBuilder().build(reader);
+//3，获取session，sqlSessionFactory.openSession(true)取值为true时可以自动提交。
+    SqlSession sqlSession = sqlSessionFactory.openSession();
+//4，使用session进行CRUD
+    User user = sqlSession.selectOne("userxml."+"getUserByName", "TOM");
+    System.out.println(user);
+    //5，手动提交和关闭session。
+    sqlSession.commit();
+    sqlSession.close();
+ 
+
+			</pre>
+  
