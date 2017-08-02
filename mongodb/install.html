@@ -1,0 +1,55 @@
+<p>
+    <br/>
+</p>
+<p>
+    <strong><span style="color: rgb(0, 112, 192); text-decoration: none;">1.1、</span></strong>在Centos将mongodb的安装目录下分别创建以下四个文件夹
+</p>
+<ul class=" list-paddingleft-2" style="list-style-type: square;">
+    <li>
+        <p>
+            &nbsp; data文件夹 &nbsp;存放数据
+        </p>
+    </li>
+    <li>
+        <p>
+            &nbsp; &nbsp; log文件夹 &nbsp;存放日志
+        </p>
+    </li>
+    <li>
+        <p>
+            &nbsp; conf文件夹 &nbsp;存放启动的配置文件
+        </p>
+    </li>
+    <li>
+        <p>
+            &nbsp; &nbsp; bin文件夹 &nbsp;存放二进制运行程序
+        </p>
+    </li>
+</ul>
+<p>
+    <br/>
+</p>
+<p>
+    <strong><span style="color: rgb(0, 112, 192); text-decoration: none;">1.2、</span></strong>conf文件夹下的mongd.conf启动文件属性配置<br/>
+</p>
+<p>
+    &nbsp; conf/mongod.conf启动文件属性设置
+</p>
+<p>
+    &nbsp; port=27017 服务器mongod监听的端口
+</p>
+<p>
+    &nbsp; dbpath=data 数据库存放路径（相对路径和绝对路径都可以）
+</p>
+<p>
+    &nbsp; logpath=log/mongod.log 日志，需要指定一个确定的文件
+</p>
+<p>
+    &nbsp; fork=true 在Linux下指定为一个后台启动程序（windows无效）。
+</p>
+<p>
+    &nbsp; bind_ip=0.0.0.0 指定哪些地址能够访问当前的mongodb服务器。
+</p>
+<p>
+    <br/>
+</p>
