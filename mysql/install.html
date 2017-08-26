@@ -1,0 +1,15 @@
+<pre>
+解压版mysql在windows下的安装
+1，解压mysql压缩文件。
+2，my.ini配置文件。
+内容详见my.ini
+3，执行mysqld install 命令。（安装mysql的服务，需要注意的是cmd命令一定需要用管理员的身份运行，而且需要在mysql的bin目录下执行该命令)。
+4，mysqld --initialize.(初始化data目录，注意在该目录下有一个 xxx.erro文件，在 A temporary password ... root@localhost : 随机密码。改密码在后面登录时有用)。
+5，net start mysql 启动mysql服务
+6，在环境变量中配置mysql的bin目录环境。
+7，在cmd中登录mysql -u root -p 回车后 输入你的随机密码
+8，系统会要求重新设置新的密码
+set password = password('新密码'); 
+ 
+CentOS6.5/6.6 在线安装mysql5.7教程
+</pre>
