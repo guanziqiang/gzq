@@ -1,0 +1,297 @@
+<p>
+    <span style="color: rgb(0, 112, 192);">创建表的标准语句：</span>
+</p>
+<p>
+    create table 表名称(
+</p>
+<p>
+    &nbsp; 列声明1,
+</p>
+<p>
+    &nbsp; ...
+</p>
+<p>
+    &nbsp; 列声明n,
+</p>
+<p>
+    &nbsp; primary key\unique\index (列名1，列名2 .....)
+</p>
+<p>
+    )engine = InnoDB, character set uf8 collate utf8_general_ci;
+</p>
+<p>
+    &nbsp;
+</p>
+<p>
+    <span style="color: rgb(0, 112, 192);">查看表的属性：</span>
+</p>
+<p>
+    desc tabl_name;
+</p>
+<p>
+    show table status from lmysql like &#39;%person%&#39;;
+</p>
+<p>
+    show full columns from countries;
+</p>
+<p>
+    truncate table_name;属于DDL
+</p>
+<p>
+    <span style="color: rgb(0, 112, 192);"><strong>修改表结构：</strong></span>
+</p>
+<p>
+    alter table table_name add 列声明
+</p>
+<p>
+    新增加的列在表结构的最后，如果需要制定在某列的后面使用after 列名。
+</p>
+<p>
+    如果需要放到第一位，使用first。
+</p>
+<p>
+    alter table table_name change 需要修改的列名 新的完整列声明(包含列名称)
+</p>
+<p>
+    alter table table_name drop 列名&nbsp;
+</p>
+<p>
+    把表默认的字符集和所有字符列（CHAR,VARCHAR,TEXT）改为新的字符集：
+</p>
+<p>
+    ALTER TABLE tbl_name CONVERT TO CHARACTER SET character_name [COLLATE ...]&nbsp;
+</p>
+<p>
+    <span style="color: rgb(0, 112, 192);">&nbsp;修改表属性：</span>
+</p>
+<p>
+    ALTER TABLE tbl_name DEFAULT CHARACTER SET character_name [COLLATE...]; &nbsp;&nbsp;
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    列声明
+</p>
+<p>
+    列名称 列类型 列限定
+</p>
+<p>
+    name int default &#39;ZhiXin&#39; not null&nbsp;
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    <strong><span style="color: rgb(0, 112, 192);">列限定</span></strong>
+</p>
+<p>
+    NOT NULL：不允许该字段插入null值（空值）。
+</p>
+<p>
+    AUTO_INCREMENT：属性告诉MySQL自动增加id字段下一个可用编号，在创建表时可以指定需要开始的值。
+</p>
+<p>
+    unsigned：不允许出现负数。
+</p>
+<p>
+    default：设置列的默认值
+</p>
+<p>
+    comment：注释&nbsp;
+</p>
+<p>
+    &nbsp;
+</p>
+<p>
+    PRIMARY KEY：用于定义此列作为主键。可以使用逗号分隔多个列来定义主键。
+</p>
+<p>
+    foreign key (event_id) references grade_event (event_id)
+</p>
+<p>
+    index(列名)：建索引
+</p>
+<p>
+    &nbsp;
+</p>
+<p>
+    &nbsp;
+</p>
+<p>
+    &nbsp;
+</p>
+<p>
+    字符集限定
+</p>
+<p>
+    &nbsp;
+</p>
+<p>
+    <strong><span style="color: rgb(0, 112, 192);">--------Mysql的整数------</span></strong>
+</p>
+<p>
+    unsigned 表示无符号的数，即整数都为正数。
+</p>
+<p>
+    ZEROFILL 表示显示时使用 0 来填充最高位（自动添加unsigned约束）。
+</p>
+<p>
+    M 表示显示时的宽度，只有在使用zerofill后才有用。
+</p>
+<p>
+    类型<span style="white-space:pre">	</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 字节<span style="white-space:pre">	</span>&nbsp; &nbsp; &nbsp;最小值<span style="white-space:pre">	</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;最大值
+</p>
+<p>
+    &nbsp;<span style="white-space:pre">	</span> <span style="white-space:pre">	</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(带符号的/无符号的)<span style="white-space:pre">	</span>(带符号的/无符号的)
+</p>
+<p>
+    tinyInt(M)<span style="white-space:pre">	</span>&nbsp; &nbsp; &nbsp;1<span style="white-space:pre">	</span>&nbsp; &nbsp; &nbsp; &nbsp;-128<span style="white-space:pre">	</span>&nbsp; &nbsp; 127
+</p>
+<p>
+    &nbsp;<span style="white-space:pre">	</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2^8-1 &nbsp;&nbsp;<span style="white-space:pre">	</span>0<span style="white-space:pre">	</span>255
+</p>
+<p>
+    smallInt(M)<span style="white-space:pre">	</span>2<span style="white-space:pre">	</span>-32768<span style="white-space:pre">	</span>32767
+</p>
+<p>
+    &nbsp;<span style="white-space:pre">	</span> <span style="white-space:pre">	</span>0<span style="white-space:pre">	</span>65535
+</p>
+<p>
+    mediumINT(M)<span style="white-space:pre">	</span>3<span style="white-space:pre">	</span>-8388608<span style="white-space:pre">	</span>8388607
+</p>
+<p>
+    &nbsp;<span style="white-space:pre">	</span> <span style="white-space:pre">	</span>0<span style="white-space:pre">	</span>16777215
+</p>
+<p>
+    INT(M)<span style="white-space:pre">	</span>4<span style="white-space:pre">	</span>-2147483648<span style="white-space:pre">	</span>2147483647
+</p>
+<p>
+    &nbsp;<span style="white-space:pre">	</span> <span style="white-space:pre">	</span>0<span style="white-space:pre">	</span>4294967295
+</p>
+<p>
+    bigINT(M)<span style="white-space:pre">	</span>8<span style="white-space:pre">	</span>-9223372036854775808<span style="white-space:pre">	</span>9223372036854775807
+</p>
+<p>
+    &nbsp;<span style="white-space:pre">	</span> <span style="white-space:pre">	</span>0<span style="white-space:pre">	</span>18446744073709551615
+</p>
+<p>
+    &nbsp;
+</p>
+<p>
+    <span style="color: rgb(0, 112, 192);"><strong>&nbsp;浮点数</strong></span>
+</p>
+<p>
+    float double decimal
+</p>
+<p>
+    float(m,d)
+</p>
+<p>
+    float和double都会四舍五入（不是我们常用的那种四舍五入）比较混乱不建议使用。
+</p>
+<p>
+    fload（7个有效位） double（16个有效位） 也就是说超出有效位的数值是没有意义的，例如float(11,2) 存一个123456712.98 实际上等同于123456700.00后面的数值已经没有意义了，而且有效位是以最高位优先。
+</p>
+<p>
+    decimal 会保留原来数据，以精度的最后一位来四舍五入。
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    char(size) <span style="white-space: pre;">	</span>size指字符串的最大长度，最多 255 个字符。&nbsp;
+</p>
+<p>
+    char以固定的宽度填充size，如果填充的字符数小于size末尾一空格符补充。所以如果实际中在末尾存了空格符，取出来的时候Mysql会自动把末尾的空格符去掉。
+</p>
+<p>
+    varchar(size) <span style="white-space:pre">	</span>size指字符串的最大长度。老版本最多 255 个字符。 新版本支持到65535个字节（所以变量的长度=有65534/编码单位）。
+</p>
+<p>
+    变长存储方式，拿出两字节来保存当前存放的字符的长度，所以也解释了为什么存放的长度是65535个字节。&nbsp;
+</p>
+<p>
+    TINYTEXT <span style="white-space:pre">	</span>存放最大长度为 255 个字符的字符串。&nbsp;
+</p>
+<p>
+    TEXT <span style="white-space:pre">	</span>存放最大长度为 65,535 个字符的字符串。&nbsp;
+</p>
+<p>
+    BLOB <span style="white-space:pre">	</span>用于 BLOBs (Binary Large OBjects)。存放最多 65,535 字节的数据。
+</p>
+<p>
+    MEDIUMTEXT <span style="white-space:pre">	</span>存放最大长度为 16,777,215 个字符的字符串。&nbsp;
+</p>
+<p>
+    MEDIUMBLOB <span style="white-space:pre">	</span>用于 BLOBs (Binary Large OBjects)。存放最多 16,777,215 字节的数据。&nbsp;
+</p>
+<p>
+    LONGTEXT <span style="white-space:pre">	</span>存放最大长度为 4,294,967,295 个字符的字符串。&nbsp;
+</p>
+<p>
+    LONGBLOB <span style="white-space:pre">	</span>用于 BLOBs (Binary Large OBjects)。存放最多 4,294,967,295 字节的数据。&nbsp;
+</p>
+<p>
+    ENUM(x,y,z,etc.) <span style="white-space:pre">	</span>允许你输入可能值的列表。可以在 ENUM 列表中列出最大 65535 个值。如果列表中不存在插入的值，则插入空值。&nbsp;
+</p>
+<p>
+    注释：这些值是按照你输入的顺序存储的。&nbsp;
+</p>
+<p>
+    可以按照此格式输入可能的值：ENUM(&#39;X&#39;,&#39;Y&#39;,&#39;Z&#39;)&nbsp;
+</p>
+<p>
+    SET <span style="white-space:pre">	</span>与 ENUM 类似，SET 最多只能包含 64 个列表项，不过 SET 可存储一个以上的值。
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    year 取值范围1901-2015 【0000】表示一种错误。
+</p>
+<p>
+    在使用两位数插入的时候，规则如下：
+</p>
+<p>
+    o &nbsp;70-99范围的年值转换为1970-1999。
+</p>
+<p>
+    o &nbsp;00-69范围的年值转换为2000-2069。
+</p>
+<p>
+    &nbsp;
+</p>
+<p>
+    date 取值范围 1000-01-01 &nbsp;9999-12-31
+</p>
+<p>
+    &nbsp;
+</p>
+<p>
+    time 取值范围 ‘-838:59:59’ &nbsp;+838:59:59
+</p>
+<p>
+    &nbsp;
+</p>
+<p>
+    datetime &nbsp;取值范围 1000-01-01 00:00:00 &nbsp;9999-12-31 23:59:59
+</p>
+<p>
+    &nbsp;
+</p>
+<p>
+    时间戳 1970-01-01 00:00:00 到当前的秒数。方便计算
+</p>
+<p>
+    &nbsp;
+</p>
+<p>
+    timestamp
+</p>
+<p>
+    <br/>
+</p>
