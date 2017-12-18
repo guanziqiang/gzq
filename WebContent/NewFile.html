@@ -7,10 +7,19 @@
 <script src="markdown-it.min.js"></script>
 </head>
 <body>
-
-<script type="text/javascript">
-var md = markdownit().render('README.md');
-console.log(md);
+<script>
+  window.searchMap = location.search.substr(1).split('&').reduce(function(r, it) {
+    var them = it.split('='); 
+	r[them[0]] = them[1]; 
+	return r;
+  }, {});
+  $.ajaxSetup({async: false});
 </script>
+</head>
+<body>
+
+  <div class="markdown-html">
+    <script>$.get((searchMap.md || 'readme.md'), function(text) { document.write(markdownit().render(text)); });</script>
+  </div>
 </body>
 </html>
