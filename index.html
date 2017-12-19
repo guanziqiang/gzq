@@ -5,22 +5,33 @@
 <title>Insert title here</title>
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/markdown-it.min.js"></script>
+  <link rel="stylesheet" href="js/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="js/assets/css/admin.css">
 </head>
 <body>
 
 </head>
 <body>
 
-<div>
-<ul>技能目录</ul>
-<ul>
-<li style="font-size: 240x;color: blue;">java 多线程目录</li>
-<li><a class="md" address="java/thread/api_basic.md" href="javascript:void(0);">API基础</a></li>
-</ul>
+<div class="am-g">
+
+  <div class="am-container">
+  管自强个人博客
+  </div>
+
+  <div class="am-u-sm-4">
+    <ul>技能目录</ul>
+	<ul>
+	<li style="font-size: 24px;color: #ef6666;">java 多线程目录</li>
+	<li><a class="md" address="java/thread/api_basic.md" href="javascript:void(0);">API基础</a></li>
+	</ul>
+  </div>
+  
+  <div class="am-u-sm-8">
+    <div id="mdContent"> asdf asdf</div>
+  </div>
+  
 </div>
-
-<div id="mdContent"></div>
-
 
 <script>
 $('.md').click(function(){
