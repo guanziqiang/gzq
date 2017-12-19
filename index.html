@@ -28,7 +28,7 @@ $('.md').click(function(){
 	$.get(
 	('WebContent/' + address)
 	, function(text) {
-		$('#md1').html( markdownit().render(text) );
+		$('#mdContent').html( markdownit().render(text) );
 		}
 	);
 	
