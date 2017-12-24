@@ -1,18 +1,116 @@
 # 线程API基础
+本节将从java的API角度触发，从线程的新建、停止、中断、挂起、等待与唤醒、加入、让步、易变的、守护、同步这几个方面逐一介绍。
+
+
+
+## 线程的创建
+- 创建线程并启动一个线程，如下代码所示。我们在main函数中新建了一个Thread对象，并调用了start()方法。运行此段代码除了最后打印的main thread end.之外，我们看不到其它任何效果。
 
 ```
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 		Thread thread = new Thread();
 		thread.start();
-		System.out.println("main end.");
+		System.out.println("main thread end.");
 	}
 ```
+- 由此引发出一个问题，启动start()方法之后干了啥。我们去查看源码发现。首先，它（public synchronized void start()）是一个由synchronized修饰的无返回值的方法。进一步查看其逻辑，其核心的部分是调用了一个start0()（private native void start0();）方法。start0()是一个本地方法，也就是说其底层由第三方语言（C、C++）实现。这里我们就不再进一步深入了，但是调用这个方法后会导致一个结果，那就是会触发run方法。下面我们自己继承Thread来实现一个自己的线程查看运行的效果。
+```
+public class MyThread extends Thread{
+	@Override
+	public void run() {
+		System.out.println("My Thread run().");
+	}
+	
+	  // 测试方法
+	public static void main(String[] args) {
+		MyThread myThread = new MyThread();
+		myThread.start();
+		System.out.println("main thread end.");
+	}
+}
+```
+运行上面的代码我们得到如下的打印结果（由于线程是并发的，所以运行的打印结果可能不一样）：<br>
+**main thread end.**<br>
+**My Thread run().**<br> 
+从代码中我们可以看到。我们并没有调用run方法。但是运行的结果确实是执行了MyThread的run方法。即通过集成Thread类，并重写run方法可以实现我们自己的线程。
+* 现在我们在考虑一个问题，如果MyThread类还需要继承一个实际开发中的业务类。由于java不能有多继承，所以就没办法实现多个继承了。我们可能就会想到implements的方式。
+* 下面我们来看一下Thread的run方法：
+``` 
+    @Override
+    public void run() {
+        if (target != null) {
+            target.run();
+        }
+    }
+```
+thread的run方法也是覆盖的，而且还有个target变量。查看Thread的声明class Thread implements Runnable得知它继承了一个Runnable接口，而且target就是一个Runnbale变量（private Runnable target;）。看如下代码实现。
+```
+class MyRunnbale implements Runnable{
 
+	@Override
+	public void run() {
+		System.out.println("My Runnable run().");
+	}
+	//测试方法
+	public static void main(String[] args) {
+		Thread thread = new Thread(new MyRunnbale());
+		thread.start();
+		System.out.println("main thread end.");
+	}
+	
+}
+```
+你运行一下程序会发现也是可以执行run方法的。这里我们使用了public Thread(Runnable target)构造器，来实现自己的线程。
+* 需要注意的是，直接使用run是不能启用一个新线程的。看下面的代码。
+```
+class FalseThread extends Thread{
+	@Override
+	public void run() {
+		System.out.println("直接启用run的线程名称：" + Thread.currentThread().getName());
+	}
+}
+class TureThread extends Thread{
+	@Override
+	public void run() {
+		System.out.println("通过start方法启用run的线程名称：" + Thread.currentThread().getName());
+	}
+}
+    //测试方法
+	public static void main(String[] args) {
+		new TureThread().start();
+		new FalseThread().run();
+		System.out.println("main thread name: " + Thread.currentThread().getName());
+		System.out.println("main thread end.");
+	}
+```
+运行测试我们会得到如下的打印结果。<br>
+**通过start方法启用run的线程名称：Thread-0** <br>
+**直接启用run的线程名称：main** <br>
+**main thread name: main** <br>
+**main thread end.** <br>
+你会发现直接启用run方法的线程名称和mian函数的线程的名称是一样的。这就证明了直接启用run方法是不会单独启动一个线程的。（Thread.currentThread().getName()：通过获取线程的示例，再获取线程的名称）
+* 这里顺带提一下线程内部的一个枚举值（即线程的各类状态）
+```
+    public enum State {
+        //表示一个尚未启动的线程。
+        NEW,
 
+        // 一个可运行的线程。但是它不一定正在执行。
+        RUNNABLE,
 
-## 新建线程
-*创建线程的基本（还有一些其它方法，但都是以这里的方式为基础）方式
+        // 阻塞的状态。
+        BLOCKED,
 
+        //无时间限定的等待
+        WAITING,
+
+        //有限时间内等待
+        TIMED_WAITING,
+
+        //线程结束的状态
+        TERMINATED;
+    }
+```
 
 ## 线程停止
 
