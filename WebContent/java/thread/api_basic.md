@@ -1,9 +1,12 @@
 # 线程API基础
-本节将从java的API角度触发，从线程的新建、停止、中断、挂起、等待与唤醒、加入、让步、易变的、守护、同步这几个方面逐一介绍。
+本节将从java线程的基础出发，从Thread（Runnable）相关方法、sychronized关键字、Object的相关方法三个切入点介绍。
 
 
 
 ## 线程的创建
+**本节要点** 
+ - 继承Thread类和实现Runable接口
+ - run和start的区别 <br><br>
 - 创建线程并启动一个线程，如下代码所示。我们在main函数中新建了一个Thread对象，并调用了start()方法。运行此段代码除了最后打印的main thread end.之外，我们看不到其它任何效果。
 
 ```
@@ -113,6 +116,15 @@ class TureThread extends Thread{
 ```
 
 ## 线程停止
+1，使用退出标志，即在run方法中完成任务后终止线程。
+2，使用stop方法强行终止，不推荐使用，该方法与suspend、resume一样都是过期方法，使用它们可能会产生不可预料的结果。
+3，使用interrupt()方法来中断线程。（出现类似wait()、sleep()这样的操作，只能通过中断来识别：sleep、wait方法会有一个InterruptedException异常，也就是说如果线程在睡眠时被中断，那么睡眠处就会抛出这个异常。而且抛出异常的同时，也会清楚当前的异常标志。）
+这两个方法都是获取interrupt的状态，但是略有不同。
+   * interrupted该方法会去判断线程是否中断，同时如果有中断的标志（例如，之前调用了interrupt方法）它将会清楚该标志状态。
+   * isInterrupted该方法与interrupted刚好相反，它获取状态后并不会清楚状态标志。
+
+com.gzq.thread.stop 多种停止线程的案例。
+
 
 ## 线程的中断
 
@@ -175,11 +187,20 @@ b，由于静态方法是不可以重写的，所以子类调用父类的同步�
 ## 守护线程：
 在守护线程所守护的线程全部结束时它才会结束。例如一些系统性服务，垃圾回收线程、JIT线程及可以理解为守护线程。
 需要注意的时设置守护线程setDaemon(true)不能在start之后，否则程序会抛出异常，而且线程还会已用户线程继续运行。
-线程优先级：
+
+## 线程优先级：
 public final void setPriority(int newPriority)；
 优先级最高为10 最低为 1。数值越大优先级越高。
 继承性，如果A线程启动了B线程，那么B线程的优先级将与A保持一致。
 线程随机性，线程A优先权 > 线程B优先权；但是并不表示A就一定先执行完成，只是A的先执行完的机会更大（还和系统平台有关）而已。
 对于要求严格的场合，最好自己解决。因为对于低级别的线程可能会永远抢不到cpu，会产生线程的饥饿。
-线程组：
+
+## 几个Thread常用的方法
+currentThread()方法可以返回代码段正在被那个线程调用的信息。用该方法可以测试出，一个实现了Thread的类，它的不同的方法可以在不同的线程中被调用（案例：com.gzq.thread.CurrentThread）。很多线程方法，需要通过它获取线程之后才能调用。
+isAlive()
+sleep(millis)
+Thread.currentThread().getId();
+Thread.yield() 让步，让出cpu
+
+## 线程组：
 ThreadGroup可以将一组功能类似的线程放到一起。
