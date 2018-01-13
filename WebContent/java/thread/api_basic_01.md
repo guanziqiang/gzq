@@ -297,7 +297,7 @@ public class ThreadObject extends Thread{
 
 }
 ```
-&emsp;&emsp;分别只调用start和run方法。通过查看运行结果你会发现。无论run还是start方法，this.getName()和this.getId打印的内容都和主线程不一样。而Thread.currentThread().getName()和Thread.currentThread().getId()在调用run方法时，打印的时mian线程的信息。结果已经说明了，Thread对象并一定就是当前线程关联的对象。Thread.currentThread()返回就一定时当前正在执行这段代码的相关线程对象。Runnable就不用说了，它本身就并不能包含这些信息。<br>
+&emsp;&emsp;分别只调用start和run方法。通过查看运行结果你会发现。无论run还是start方法，this.getName()和this.getId打印的内容都和主线程不一样。而Thread.currentThread().getName()和Thread.currentThread().getId()在调用run方法时，打印的时mian线程的信息。结果已经说明了，Thread对象并一定就是当前线程关联的对象。Thread.currentThread()返回就一定时当前正在执行这段代码的相关线程对象。Runnable就不用说了，它本身就并不能包含这些信息。  
 &emsp;&emsp;练习：在上面的案例基础上，进一步验证什么时候返回的Thread.currentThread()与你创建的Thread是同一个对象。
 
 <br><br><br>
