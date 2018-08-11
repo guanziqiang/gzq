@@ -21,7 +21,7 @@ public class T1Singleton {
     
     //私有化构造器
     private T1Singleton() {
-        System.out.println("创建了一个实力");
+        System.out.println("创建了一个实例");
     }
     
     //公共方法
@@ -31,3 +31,4 @@ public class T1Singleton {
 
 }
 ```
+### 懒汉式之方法锁
