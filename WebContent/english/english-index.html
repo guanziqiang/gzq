@@ -40,12 +40,14 @@
   <div class="am-collapse am-topbar-collapse" id="blog-collapse">
     <ul class="am-nav am-nav-pills am-topbar-nav">
       <li class="am-active"><a href="../../index.html">首页</a></li>
-      <li class="am-dropdown" data-am-dropdown>
+      <li id="grammar" class="am-dropdown" data-am-dropdown>
         <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
            剑桥语法笔记<span class="am-icon-caret-down"></span>
         </a>
         <ul class="am-dropdown-content">
-          <li><a href="javascript:void(0)" address="grammar/unit038.md" class="md">Unit038</a></li>         
+          <li><a href="javascript:void(0)" address="grammar/conditionals/conditionals-wish.md" class="md">--Conditionals and ‘wish’--</a></li>         
+          <li><a href="javascript:void(0)" address="grammar/conditionals/unit038.md" class="md">Unit038</a></li>         
+          <li><a href="javascript:void(0)" address="grammar/conditionals/unit039.md" class="md">Unit039</a></li>         
         </ul>
       </li>
     </ul>
@@ -61,7 +63,6 @@
           <h1 id="title" class="am-article-title blog-text-center">文章标题</h1>
         </div>        
         <div class="am-article-bd">
-        <img src="../../js/assets/i/f17.jpg" alt="" class="blog-entry-img blog-article-margin">          
         <p id="mdContent" class="am-article-lead">
         	点击下拉框选择内容
         </p>
@@ -106,6 +107,7 @@
         $.get(address, function(text) {
             $('#mdContent').html(markdownit().render(text));
             $('#blog-collapse').collapse('close');
+            $('#grammar').dropdown('close')
         });
 
     });
