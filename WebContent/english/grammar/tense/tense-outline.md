@@ -17,4 +17,10 @@
 - he / she / it              does 
 
 2. 疑问句和否定句形式：
-- 
+- do I / we / you / they do?          ||    does he / she / it   do
+- I / we / you / they  don't  do      ||    he / she / it    doesn't do   
+
+3. 用来谈论现时的情况或状态，它用来表示一直发生的动作或行为，或是重复发生的动作或行为，或是普遍的真理，动作是否发生在说话时并不重要。
+
+4. 有些行为是靠说话完成的。如I promise ...;  I suggest ...;  I apologise ...;  I  advise ...; I insist ...;  I agree...;   I refuse ...;这类句子使用现在时。
+
