@@ -38,5 +38,8 @@
 - 你总是在打电脑游戏。你应该做些更积极的事。
 - Tim从不感到满意。他总是在抱怨。
 
-
+## words
+- satisfied BrE /ˈsætɪsfaɪd/ ; NAmE /ˈsætɪsfaɪd/  adj. 感到满意的 v. 使满意（satisfy的过去式）
+- satisfy BrE /ˈsætɪsfaɪ/ ; NAmE /ˈsætɪsfaɪ/ verb 令人满足、满意；使满足、满意、相信；说服。
+- complain BrE /kəmˈpleɪn/ ; NAmE /kəmˈpleɪn/ verb vi. 投诉；发牢骚；诉说 vt. 抱怨；控诉。
 
