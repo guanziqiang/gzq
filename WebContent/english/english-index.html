@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>article no sidebar  | Amaze UI Examples</title>
+  <title>英语笔记</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <link rel="icon" type="image/png" href="../js/assets/i/favicon.png">
@@ -40,27 +40,22 @@
   <div class="am-collapse am-topbar-collapse" id="blog-collapse">
     <ul class="am-nav am-nav-pills am-topbar-nav">
       <li class="am-active"><a href="../../index.html">首页</a></li>
-      <li id="grammar" class="am-dropdown" data-am-dropdown>
-        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-           剑桥语法笔记<span class="am-icon-caret-down"></span>
-        </a>
-        <ul class="am-dropdown-content">
-          <li><a href="javascript:void(0)" address="grammar/tense/tense-outline.md" class="md">--Tense--</a></li>         
-          <li><a href="javascript:void(0)" address="grammar/tense/unit001.md" class="md">Unit001</a></li>         
-          <li><a href="javascript:void(0)" address="grammar/tense/unit002.md" class="md">Unit002</a></li>         
-          <li><a href="javascript:void(0)" address="grammar/tense/unit003.md" class="md">Unit003</a></li>         
-          <li><a href="javascript:void(0)" address="grammar/tense/unit004.md" class="md">Unit004</a></li>         
-          <li><a href="javascript:void(0)" address="grammar/tense/unit005.md" class="md">Unit005</a></li>         
-          <li><a href="javascript:void(0)" address="grammar/tense/unit006.md" class="md">Unit006</a></li>         
-          <li><a href="javascript:void(0)" address="grammar/tense/unit007.md" class="md">Unit007</a></li>         
-          <li><a href="javascript:void(0)" address="grammar/tense/unit008.md" class="md">Unit008</a></li>         
-          <li><a href="javascript:void(0)" address="grammar/tense/unit009.md" class="md">Unit009</a></li>         
-        
-          <li><a href="javascript:void(0)" address="grammar/conditionals/conditionals-wish.md" class="md">--Conditionals and ‘wish’--</a></li>         
-          <li><a href="javascript:void(0)" address="grammar/conditionals/unit038.md" class="md">Unit038</a></li>         
-          <li><a href="javascript:void(0)" address="grammar/conditionals/unit039.md" class="md">Unit039</a></li>         
-        </ul>
-      </li>
+      <li class="am-active">
+      	<select id="grammar" data-am-selected="{maxHeight: 280, searchBox: 1, btnWidth: '140px', btnStyle:'secondary' }" >
+      	  <optgroup label="时态">
+    		  <option value="grammar/tense/unit000.md">剑桥语法笔记</option>
+    		  <option value="grammar/tense/tense-outline.md">时态语法总结</option>
+    		  <option value="grammar/tense/unit001.md">Unit001 I am doing 现在进行时</option>
+    		  <option value="grammar/tense/unit002.md">Unit002</option>
+    		  <option value="grammar/tense/unit003.md">Unit003</option>
+    		  <option value="grammar/tense/unit004.md">Unit004 现在进行时与一般现在时 比较（二）</option>
+          </optgroup>
+		  <optgroup label="情态动词">
+    		    <option value="grammar/conditionals/unit038.md">Unit0038</option>
+    		    <option value="grammar/conditionals/unit039.md">Unit0039</option>
+    		    <option value="grammar/conditionals/unit040.md">Unit0040</option>
+		  </optgroup>
+		</select>
     </ul>
   </div>
 </nav>
@@ -112,15 +107,12 @@
 <!-- <script src="../js/assets/js/app../../jss"></script> -->
 </body>
 <script>
-    $('.md').click(function() {
-        var address = $(this).attr('address');
-        $('#title').html( $(this).html() );
+    $('#grammar').change(function() {
+        var address = $("#grammar ").val();
+        $('#title').html( $("#grammar").find("option:selected").text() );
         $.get(address, function(text) {
             $('#mdContent').html(markdownit().render(text));
-            $('#blog-collapse').collapse('close');
-            $('#grammar').dropdown('close')
         });
-
     });
 </script>
 </html>
